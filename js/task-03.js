@@ -14,17 +14,12 @@ const images = [
 ];
 
 const gallery = document.querySelector(".gallery")
-let fragment = new DocumentFragment();
 
-for(let image of images){ 
-  let item = document.createElement("li")
-  item.insertAdjacentHTML('beforeEnd', 
-  `<img src="${image.url}"
-   alt="${image.alt}"
-    width = 200 
-    height = 150>`)
-  item.setAttribute("style", "list-style-type:none; display:flex; gap:30px;");
-  fragment.appendChild(item)
+  const makegallery = ({url,alt}) => { 
+  return `<li class="gallery_pic"><img src="${url}"
+   alt="${alt}" width ="200"></li>
+   `
+  }
+const galeryItems = images.map(makegallery).join("")
 
-}
-document.querySelector(".gallery").append(fragment)
+gallery.insertAdjacentHTML("afterbegin", galeryItems)
